@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 10px;
+            font-weight: bolder;
+            font-size: 40px;
+        }
+        .content {
+            height: 300px;
+            margin: 30px auto;
+            max-width: 700px;
+            border: 3px solid black;
+            border-radius: 18px;
+        }
+        .content div {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            height: 70%;
+        }
+        .count button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-weight: bold;
+            font-size: x-large;
+            cursor: pointer;
+            background-color: thistle;
+            color: rgba(0, 0, 0, 0.2);
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+        .count button:hover {
+            background-color:yellowgreen;
+            color: ivory;
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        .count span {
+            font-size: 24px;
+            padding: 0.4em;
+            border-radius: 25%;
+            font-weight: bold;
+            color: olivedrab;
+            background-color: paleturquoise;
+        }
+        #set {
+            padding: 10px 20px;
+            font-weight: bold;
+            font-size: x-large;
+            cursor: pointer;
+            background-color: aqua;
+            color: sandybrown;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+        #set:hover {
+            background-color: darkgoldenrod;
+            color: forestgreen;
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        .bgmode {
+            margin: 10px;
+            padding: 10px;
+            font-size: x-large;
+            cursor: pointer;
+            background-color: chocolate;
+            color: violet;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+        }
+        .bgmode:hover {
+            background-color: black;
+            color: forestgreen;
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+        @media (width <= 500px) {
+            body {
+                padding: 20px 10px;
+            }
+            h1 {
+                font-size: 35px;
+            }
+            .content {
+                height: 250px;
+                margin: 20px auto;
+            }
+            .count button {
+                padding: 5px 10px;
+                margin: 2px;
+                font-size: large;
+            }
+            .count span {
+                padding: 0.1em;
+            }
+            #set {
+                font-size: large;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body onload="mix_mode()">
+    <h1>Numeric Counter</h1>
+    <section class="content">
+        <div class="count">
+            <button onclick="decrease()">DECREASE -</button>
+            <span id="counter">0</span>
+            <button onclick="increase()">+ INCREASE</button>
+        </div>
+        <button onclick="reset()" id="set">RESET</button>
+    </section>
+    <button onclick="light_mode()" class="bgmode">Bright - World</button>
+    <button onclick="dark_mode()" class="bgmode">Dark - World</button>
+    <button onclick="red_mode()" class="bgmode">Red - World</button>
+    <button onclick="green_mode()" class="bgmode">Green - World</button>
+    <button onclick="blue_mode()" class="bgmode">Blue - World</button>
+    <button onclick="mix_mode()" class="bgmode">Personal Preference</button>
+    <script>
+        let counter = 0;
+        var bg = document.querySelectorAll("section");
+        
+        function decrease() {
+            counter--;
+            updateCounter();
+        }
+        
+        function increase() {
+            counter++;
+            updateCounter();
+        }
+        
+        function reset() {
+            counter = 0;
+            updateCounter();
+        }
+
+        function updateCounter() {
+            document.getElementById("counter").innerText = counter;
+        }
+        
+        function light_mode() {
+            document.body.style.background = "linear-gradient(180deg, rgba(240,235,225,1) 0%, rgba(235,225,215,1) 45%, rgba(225,215,195,1) 100%)";
+            document.body.style.color = "hotpink";
+            bg.forEach(chnage => {
+                chnage.style.background = "linear-gradient(360deg, rgba(215,215,215,1) 0%, rgba(195,195,195,1) 45%, rgba(175,175,175,1) 100%)";
+            });
+        }
+        
+        function dark_mode() {
+            document.body.style.background = "linear-gradient(180deg, rgba(30,40,60,1) 0%, rgba(20,30,40,1) 45%, rgba(15,20,30,1) 100%)";
+            document.body.style.color = "gold";
+            bg.forEach(chnage => {
+                chnage.style.background = "linear-gradient(360deg, rgba(40,40,40,1) 0%, rgba(60,60,60,1) 45%, rgba(80,80,80,1) 100%)";
+            });
+        }
+        
+        function red_mode() {
+            document.body.style.background = "linear-gradient(180deg, rgba(240,20,30,1) 0%, rgba(235,30,40,1) 45%, rgba(225,40,60,1) 100%)";
+            document.body.style.color = "whitesmoke";
+            bg.forEach(chnage => {
+                chnage.style.background = "linear-gradient(360deg, rgba(215,40,40,1) 0%, rgba(195,60,60,1) 45%, rgba(275,80,80,1) 100%)";
+            });
+        }
+        
+        function green_mode() {
+            document.body.style.background = "linear-gradient(180deg, rgba(30,240,20,1) 0%, rgba(40,235,30,1) 45%, rgba(60,225,40,1) 100%)";
+            document.body.style.color = "khaki";
+            bg.forEach(chnage => {
+                chnage.style.background = "linear-gradient(360deg, rgba(40,215,40,1) 0%, rgba(60,195,60,1) 45%, rgba(80,175,80,1) 100%)";
+            });
+        }
+        
+        function blue_mode() {
+            document.body.style.background = "linear-gradient(180deg, rgba(20,30,240,1) 0%, rgba(30,40,235,1) 45%, rgba(40,60,225,1) 100%)";
+            document.body.style.color = "lawngreen";
+            bg.forEach(chnage => {
+                chnage.style.background = "linear-gradient(360deg, rgba(40,40,215,1) 0%, rgba(60,60,195,1) 45%, rgba(80,80,175,1) 100%)";
+            });
+        }
+        
+        function mix_mode() {
+            document.body.style.background = "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(255,55,0,1) 45%, rgba(255,0,0,1) 100%)";
+            document.body.style.color = "mediumaquamarine";
+            bg.forEach(chnage => {
+                chnage.style.background = "linear-gradient(360deg, rgba(15,20,30,1) 0%, rgba(235,25,40,1) 45%, rgba(225,40,60,1) 100%)";
+            });
+        }
+   </script>
+</body>
+</html>
